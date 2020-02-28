@@ -113,3 +113,6 @@ noremap <silent> k gk
 noremap <silent> j gj
 noremap <silent> 0 g0
 noremap <silent> $ g$
+
+"set location of the viminfo file
+set viminfo+=n~/.vim/viminfo
