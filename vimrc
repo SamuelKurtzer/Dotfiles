@@ -115,4 +115,7 @@ noremap <silent> 0 g0
 noremap <silent> $ g$
 
 "set location of the viminfo file
-set viminfo+=n~/.vim/viminfo
+set viminfo+=~/.vim/viminfo
+
+set virtualedit=all
+
