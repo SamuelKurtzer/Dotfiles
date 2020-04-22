@@ -1,12 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'ajh17/VimCompletesMe'
-
 Plug 'tpope/vim-surround'
 
 Plug 'terryma/vim-multiple-cursors'
-
-Plug 'altercation/vim-colors-solarized'
 
 Plug 'dhruvasagar/vim-table-mode'
 
@@ -20,13 +16,17 @@ Plug 'tpope/vim-ragtag'
 
 Plug 'junegunn/fzf.vim'
 
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-
-Plug 'vim-scripts/OmniCppComplete'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'tpope/vim-fugitive'
 
 Plug 'easymotion/vim-easymotion'
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+
+Plug 'SirVer/ultisnips'
+
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -115,7 +115,17 @@ noremap <silent> 0 g0
 noremap <silent> $ g$
 
 "set location of the viminfo file
-set viminfo+=~/.vim/viminfo
+set viminfo+=n~/.vim/viminfo
 
 set virtualedit=all
+
+set ignorecase
+set smartcase
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
