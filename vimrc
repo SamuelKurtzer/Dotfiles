@@ -30,97 +30,88 @@ Plug 'honza/vim-snippets'
 
 call plug#end()
 
+" Personal Vim Settings
 set nocompatible
-
-set mouse=a
-
-set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab smarttab
-
+filetype plugin indent on
+syntax enable
+set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
 set number relativenumber
 set numberwidth=4
 augroup numbertoggle
+    " On changing from insert to normal switch between
+    " relative and incremental numbers
 	autocmd!
-	autocmd BufEnter,FocusGained,InsertLeave 	* set relativenumber
-	autocmd BufLeave,FocusLost,InsertEnter 		* set norelativenumber
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup END
-
-syntax enable
 set background=dark
-
-filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
-
-set tags+=~/.vim/tags/cpp
-au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-
-set showcmd
-set cursorline
+set ignorecase smartcase
+set cursorline ruler
 set wildmenu
-set lazyredraw
-set incsearch
-set hlsearch
+set lazyredraw incsearch hlsearch
+set foldenable foldlevelstart=10 foldnestmax=10 foldmethod=indent
 
+" Status Line
+set showcmd
+set laststatus=2
+set noshowmode
+function StatusLineMode()
+    let status=mode()
+    if status == "n"
+        return "ぶ"
+    elseif status == "i"
+        return "く"
+    elseif status == "v"
+        return "見"
+    else
+        return "不"
+    endif
+endfunction
 
-set foldenable
-set foldlevelstart=10
-set foldnestmax=10
-set foldmethod=indent
+set statusline=
+set statusline+=\ 所:
+set statusline+=%F
+set statusline+=%=
+set statusline+=%1*
+set statusline+=\ %{StatusLineMode()}\ 
 
+" Leader
 nnoremap <silent> <SPACE> <nop>
 let mapleader=" "
-
 nnoremap <silent> <leader>ts :terminal<CR>
 nnoremap <BS> :nohlsearch<CR>
-
-set ruler
-
 set path+=**
-
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
-
 let &showbreak='↪ '
 set nolist wrap linebreak breakat&vim
-
 map n <A-n>
-
 set clipboard=unnamedplus
-
-"ctags
-command! MakeTags !ctags -R .
-
-"spell check settings
+" remove the swap file warning and dont tell me that 
+" the search is heading to the top.
+set shortmess=As
+" spell check settings
 set spelllang=en_au
 set spellfile=en.utf-8.add
 nnoremap <F6> :setlocal spell!<CR>
 set complete+=kspell
-
-"set browser to firefox
-let g:instant_markdown_browser = "firefox"
-
-"remove the swap file warning and dont tell me that the search is heading to
-"the top.
-set shortmess=As
-
-"fzf bindings 
-nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-
-"Remap movement to play well with wrapping.
-noremap <silent> k gk
-noremap <silent> j gj
-noremap <silent> 0 g0
-noremap <silent> $ g$
-
-"set location of the viminfo file
+" set location of the viminfo file
 set viminfo+=n~/.vim/viminfo
-
+" set so you can move around a file without having to rely on
+" whitespace.
 set virtualedit=all
 
-set ignorecase
-set smartcase
+" ctags
+command! MakeTags !ctags -R .
+
+" set browser to firefox
+let g:instant_markdown_browser = "firefox"
+
+" fzf bindings 
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
@@ -129,3 +120,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+let g:ycm_language_server = [ { 'name': 'haskell', 'filetypes': [ 'haskell', 'hs', 'lhs' ], 'cmdline': [ 'hie-wrapper' , '--lsp'], 'project_root_files': [ '.stack.yaml', 'cabal.config', 'package.yaml' ] } ]
+
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
