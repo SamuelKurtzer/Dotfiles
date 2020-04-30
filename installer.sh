@@ -1,4 +1,5 @@
 #!/bin/sh
-ln -s ~/Dotfiles/Xmodmap ~/.Xmodmap
-ln -s ~/Dotfiles/vimrc ~/.vim/vimrc
-ln -s ~/Dotfiles/zshrc ~/.zshrc
+
+[[ -L ~/.Xmodmap ]] ln -s ~/Dotfiles/Xmodmap ~/.Xmodmap
+[[ -L ~/.vim/vimrc ]] ln -s ~/Dotfiles/vimrc ~/.vim/vimrc
+[[ -L ~/.zshrc ]] ln -s ~/Dotfiles/zshrc ~/.zshrc

@@ -86,6 +86,8 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 let &showbreak='↪ '
+set list
+set listchars=tab:▸─,trail:S       
 set nolist wrap linebreak breakat&vim
 map n <A-n>
 set clipboard=unnamedplus
