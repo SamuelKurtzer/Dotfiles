@@ -99,10 +99,24 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # eval "$(direnv hook zsh)"
 
-mkcd() { if [ ! -d "$@" ];then mkdir -p "$@" ;fi; cd "$@"; }
+function mkcd() { if [ ! -d "$@" ];then mkdir -p "$@" ;fi; cd "$@"; }
+
 alias open="xdg-open"
+
 function chpwd () {
     if [ -f "venv/bin/activate" ]; then
         source venv/bin/activate
     fi
 }
+
+function see () {
+    for var in "$@"; do
+        echo "$var";
+        if [ -f "$var" ]; then
+            cat "$var";
+        elif [ -d "$var" ]; then
+            ls -lh "$var";
+        fi
+    done
+}
+        
