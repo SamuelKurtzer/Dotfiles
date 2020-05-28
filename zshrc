@@ -100,3 +100,9 @@ source $ZSH/oh-my-zsh.sh
 # eval "$(direnv hook zsh)"
 
 mkcd() { if [ ! -d "$@" ];then mkdir -p "$@" ;fi; cd "$@"; }
+alias open="xdg-open"
+function chpwd () {
+    if [ -f "venv/bin/activate" ]; then
+        source venv/bin/activate
+    fi
+}
