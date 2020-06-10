@@ -121,4 +121,4 @@ function see () {
         fi
     done
 }
-        
+export EDITOR=vim
