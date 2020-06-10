@@ -99,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # eval "$(direnv hook zsh)"
 
+autoload zmv
+
 function mkcd() { if [ ! -d "$@" ];then mkdir -p "$@" ;fi; cd "$@"; }
 
 alias open="xdg-open"
