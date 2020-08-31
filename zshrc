@@ -122,3 +122,12 @@ function see () {
     done
 }
 export EDITOR=vim
+
+function githubKeyAdd () {
+	if [[ $# -ne 3 ]]
+	then
+		echo "Please Provide Username, Password and Keyname in that order";
+	else
+		curl -u "$1:$2" --data '{"title":"'$3'","key":"'"$(cat ~/.ssh/id_rsa.pub)"'"}' https://api.github.com/user/keys
+	fi
+}
