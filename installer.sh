@@ -1,17 +1,24 @@
 #!/bin/sh
-if [[ -L ~/.Xmodmap ]]; then
-    echo "Installing Xmodmap File"
-    ln -s ~/Dotfiles/Xmodmap ~/.Xmodmap
+mkdir --parents ~/Dotfiles/backup
+now=`date +"%F_%R"`
+if [[ -a ~/.Xmodmap ]]; then
+	mv ~/.Xmodmap ~/Dotfiles/backup/Xmodmap$(date +"%F_%R")
 fi
-if [[ -L ~/.vim/vimrc ]]; then
-    echo "installing vimrc files"
-    ln -s ~/Dotfiles/vimrc ~/.vim/vimrc
+echo "Installing Xmodmap File"
+ln ~/Dotfiles/Xmodmap ~/.Xmodmap
+if [[ -a ~/.vim/vimrc ]]; then
+	mv ~/.vim/vimrc ~/Dotfiles/backup/vim/vimrc$(date +"%F_%R")
 fi
-if [[ -L ~/.zshrc ]]; then
-    echo "installing zshrc file"
-    ln -s ~/Dotfiles/zshrc ~/.zshrc
+echo "installing vimrc files"
+mkdir ~/.vim
+ln ~/Dotfiles/vimrc ~/.vim/vimrc
+if [[ -a ~/.zshrc ]]; then
+	mv ~/.zshrc ~/Dotfiles/backup/zshrc$(date +"%F_%R")
 fi
+echo "installing zshrc file"
+ln ~/Dotfiles/zshrc ~/.zshrc
+echo "installing Git config file"
 if [[ -a ~/.gitconfig ]]; then
-    echo "installing Git config file"
-    ln -s ~/Dotfiles/gitconfig ~/.gitconfig
+	mv ~/.gitconfig ~/Dotfiles/backup/gitconfig$(date +"%F_%R")
 fi
+ln ~/Dotfiles/gitconfig ~/.gitconfig
