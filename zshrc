@@ -1,3 +1,5 @@
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PROMPT='%2~ %(!.#.>) '
 function mkcd() { if [ ! -d "$@" ];then mkdir -p "$@" ;fi; cd "$@"; }
 
@@ -7,16 +9,6 @@ function chpwd () {
     fi
 }
 
-function see () {
-    for var in "$@"; do
-        echo "$var";
-        if [ -f "$var" ]; then
-            cat "$var";
-        elif [ -d "$var" ]; then
-            ls -lh "$var";
-        fi
-    done
-}
 export EDITOR=vim
 
 function githubKeyAdd () {
@@ -33,3 +25,5 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
