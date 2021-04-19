@@ -1,15 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
-if [[ -L ~/.Xmodmap ]]; then
-    ln -s ~/Dotfiles/Xmodmap ~/.Xmodmap
+if [[ ! -e ~/.Xmodmap ]]; then
+    ln ~/Dotfiles/Xmodmap ~/.Xmodmap
 fi
-if [[ -L ~/.vim/vimrc ]]; then
-    ln -s ~/Dotfiles/vimrc ~/.vim/vimrc
+if [[ ! -e ~/.vim/vimrc ]]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ln ~/Dotfiles/vimrc ~/.vim/vimrc
 fi
-if [[ -L ~/.zshrc ]]; then
-    ln -s ~/Dotfiles/zshrc ~/.zshrc
+if [[ ! -e ~/.zshrc ]]; then
+    zshLocal=$(which zsh)
+    if [ -z zshLocal ]; then 
+        echo "Please install zsh, then re-run the installer"
+    else
+        ln ~/Dotfiles/zshrc ~/.zshrc
+    fi
 fi
-if [[ -L ~/.gitconfig ]]; then
-    ln -s ~/Dotfiles/gitconfig ~/.gitconfig
+if [[ ! -e ~/.gitconfig ]]; then
+    ln ~/Dotfiles/gitconfig ~/.gitconfig
 fi
+
 git config --global init.templatedir ~/Dotfiles/git

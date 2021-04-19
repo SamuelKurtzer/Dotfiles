@@ -1,0 +1,8 @@
+# Generate basic keys.
+# ecdsa should be go to
+# ed25519 should be used where applicable
+# 
+ssh-keygen -t ecdsa -b 521
+ssh-keygen -t ed25519
+
+
