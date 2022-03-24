@@ -106,7 +106,7 @@ set complete+=kspell
 set viminfo+=n~/.vim/viminfo
 " set so you can move around a file without having to rely on
 " whitespace.
-set virtualedit=all
+" not much of a fan. set virtualedit=all
 
 " ctags
 command! MakeTags !ctags -R .
